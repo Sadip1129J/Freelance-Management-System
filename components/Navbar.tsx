@@ -14,6 +14,9 @@ export const Navbar: React.FC = () => {
   };
 
   const getDashboardLink = () => {
+    if (user?.role === UserRole.ADMIN) {
+      return '/dashboard/admin';
+    }
     return user?.role === UserRole.FREELANCER ? '/dashboard/freelancer' : '/dashboard/client';
   };
 
@@ -35,10 +38,12 @@ export const Navbar: React.FC = () => {
                   <LayoutDashboard className="h-4 w-4 mr-1.5" />
                   Dashboard
                 </Link>
-                <Link to="/chat" className="text-slate-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors">
-                  <MessageSquare className="h-4 w-4 mr-1.5" />
-                  Messages
-                </Link>
+                {user?.role !== UserRole.ADMIN && (
+                  <Link to="/chat" className="text-slate-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors">
+                    <MessageSquare className="h-4 w-4 mr-1.5" />
+                    Messages
+                  </Link>
+                )}
                 <div className="flex items-center ml-4 pl-4 border-l border-slate-200">
                   <img src={user?.avatar} alt={user?.name} className="h-8 w-8 rounded-full ring-2 ring-indigo-50" />
                   <span className="ml-2 text-sm font-semibold text-slate-700 hidden sm:block">{user?.name}</span>

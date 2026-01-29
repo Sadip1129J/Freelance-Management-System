@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { UserRole } from '../types';
-import { Briefcase, User as UserIcon } from 'lucide-react';
+import { Briefcase, User as UserIcon, Shield } from 'lucide-react';
 
 export const Login: React.FC = () => {
   const { login } = useAuth();
@@ -12,6 +12,8 @@ export const Login: React.FC = () => {
     login(role);
     if (role === UserRole.FREELANCER) {
       navigate('/dashboard/freelancer');
+    } else if (role === UserRole.ADMIN) {
+      navigate('/dashboard/admin');
     } else {
       navigate('/');
     }
@@ -42,21 +44,29 @@ export const Login: React.FC = () => {
               Continue as Client
             </button>
             
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-slate-500">Or</span>
-              </div>
-            </div>
-
             <button
               onClick={() => handleLogin(UserRole.FREELANCER)}
               className="w-full flex items-center justify-center px-4 py-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
             >
               <Briefcase className="h-5 w-5 mr-2" />
               Continue as Freelancer
+            </button>
+
+            <div className="relative py-2">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-slate-500">System Access</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => handleLogin(UserRole.ADMIN)}
+              className="w-full flex items-center justify-center px-4 py-3 border border-slate-300 rounded-lg shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 transition-colors"
+            >
+              <Shield className="h-5 w-5 mr-2 text-slate-500" />
+              Login as Admin
             </button>
           </div>
         </div>

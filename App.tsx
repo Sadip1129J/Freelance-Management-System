@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { ServiceDetails } from './pages/ServiceDetails';
 import { FreelancerDashboard } from './pages/FreelancerDashboard';
 import { ClientDashboard } from './pages/ClientDashboard';
+import { AdminDashboard } from './pages/AdminDashboard';
 import { Chat } from './pages/Chat';
 import { Login } from './pages/Login';
 import { UserRole } from './types';
@@ -48,6 +49,14 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute requiredRole={UserRole.CLIENT}>
               <ClientDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/dashboard/admin" 
+          element={
+            <ProtectedRoute requiredRole={UserRole.ADMIN}>
+              <AdminDashboard />
             </ProtectedRoute>
           } 
         />

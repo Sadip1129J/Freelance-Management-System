@@ -20,6 +20,13 @@ export const MOCK_USERS: User[] = [
     email: 'bob@example.com',
     role: UserRole.CLIENT,
     avatar: 'https://picsum.photos/id/65/200/200'
+  },
+  {
+    _id: 'admin1',
+    name: 'System Admin',
+    email: 'admin@freelanceflow.com',
+    role: UserRole.ADMIN,
+    avatar: 'https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff'
   }
 ];
 

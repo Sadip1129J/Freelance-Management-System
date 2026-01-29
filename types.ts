@@ -1,6 +1,7 @@
 export enum UserRole {
   FREELANCER = 'Freelancer',
-  CLIENT = 'Client'
+  CLIENT = 'Client',
+  ADMIN = 'Admin'
 }
 
 export enum OrderStatus {
